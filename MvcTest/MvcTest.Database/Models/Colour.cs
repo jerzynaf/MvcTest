@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace MvcTest.Web.Database.Models
+namespace MvcTest.Database.Models
 {
     public partial class Colour
     {

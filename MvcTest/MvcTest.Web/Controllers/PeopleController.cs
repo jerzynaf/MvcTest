@@ -6,8 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using MvcTest.Web.Database;
-using MvcTest.Web.Database.Models;
+using MvcTest.Database;
+using MvcTest.Database.Models;
 
 namespace MvcTest.Web.Controllers
 {
