@@ -11,7 +11,7 @@ namespace MvcTest.Web.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return Content("test");
+            return RedirectToAction("Index", "People");
         }
     }
 }
