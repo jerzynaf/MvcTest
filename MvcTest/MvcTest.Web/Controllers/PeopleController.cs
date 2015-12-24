@@ -6,8 +6,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using MvcTest.Database;
 using MvcTest.Database.Models;
+using MvcTest.Models.ViewModels;
 
 namespace MvcTest.Web.Controllers
 {
@@ -18,7 +20,9 @@ namespace MvcTest.Web.Controllers
         // GET: People
         public ActionResult Index()
         {
-            return View(db.People.OrderBy(p => p.FirstName).ToList());
+            var people = db.People.OrderBy(p => p.FirstName).ToList();
+            var peopleViewModels = Mapper.Map<List<PersonViewModel>>(people);
+            return View(peopleViewModels);
         }
 
         // GET: People/Edit/5

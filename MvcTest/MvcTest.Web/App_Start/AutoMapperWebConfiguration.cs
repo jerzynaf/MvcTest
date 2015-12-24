@@ -9,8 +9,8 @@ namespace MvcTest.Web
             Mapper.Initialize(cfg =>
             {
                 //TODO swap to interfaces
-                cfg.AddProfile(new PersonProfile());
                 cfg.AddProfile(new ColourProfile());
+                cfg.AddProfile(new PersonProfile());
             });
         }
     }
