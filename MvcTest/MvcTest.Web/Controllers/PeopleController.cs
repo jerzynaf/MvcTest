@@ -18,8 +18,8 @@ namespace MvcTest.Web.Controllers
         // GET: People
         public ActionResult Index()
         {
-            return View(db.People.ToList());
-        } 
+            return View(db.People.OrderBy(p => p.FirstName).ToList());
+        }
 
         // GET: People/Edit/5
         public ActionResult Edit(int? id)
