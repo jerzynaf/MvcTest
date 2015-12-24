@@ -13,6 +13,7 @@ namespace MvcTest.Web
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            AutoMapperWebConfiguration.Configure();
         }
     }
 }
