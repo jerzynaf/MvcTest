@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MvcTest.Models.ViewModels
 {
-    public partial class Person
+    public class PersonViewModel
     {
         public int PersonId { get; set; }
 
