@@ -14,19 +14,25 @@
         <th>
             @Html.DisplayNameFor(model => model.IsEnabled)
         </th>
+        <th>
+            @Html.Label("Colours")
+        </th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
             <td>
-                @Html.ActionLink(item.FullName, "Edit", new {@id=item.PersonId})
+                @Html.ActionLink(item.FullName, "Edit", new { @id = item.PersonId })
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsAuthorised)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsEnabled)
+            </td>
+            <td>
+                @Html.Label(item.ColoursString)
             </td>
         </tr>
     }

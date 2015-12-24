@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace MvcTest.Models.ViewModels
 {
@@ -26,6 +27,14 @@ namespace MvcTest.Models.ViewModels
         public string FullName
         {
             get { return FirstName + " " + LastName; }
+        }
+
+        public string ColoursString
+        {
+            get
+            {
+                return string.Join(", ", Colours.OrderBy(c => c.Name).Select(c => c.Name)).TrimEnd(new char[] { ',', ' ' });
+            }
         }
     }
 }
