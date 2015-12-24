@@ -59,15 +59,26 @@ namespace MvcTest.Web.Controllers
         // POST: People/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PersonId,FirstName,LastName,IsAuthorised,IsValid,IsEnabled")] Person person)
+        public ActionResult Edit(PersonViewModel personViewModel)
         {
             if (ModelState.IsValid)
             {
+                var person = _context.People.Include(c=>c.Colours).Single(p=>p.PersonId==personViewModel.PersonId);
+                person.IsAuthorised = personViewModel.IsAuthorised;
+                person.IsEnabled = personViewModel.IsEnabled;
+                person.Colours.Clear();
+                var pickedColours = personViewModel.Colours.Where(c => c.IsChecked == true).Select(c => c.ColourId);
+                for (int i = 0; i < pickedColours.Count(); i++)
+                {
+                    var colour = _context.Colours.Find(pickedColours.ElementAt(i));
+                    person.Colours.Add(colour);
+                }
+
                 _context.Entry(person).State = EntityState.Modified;
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(person);
+            return View(personViewModel);
         }
     }
 }

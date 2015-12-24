@@ -35,12 +35,13 @@
 
         <h3>Favourite Colours</h3>
         <hr />
-        @for (int i = 0; i < Model.Colours.Count; i++)
+        @for (var i = 0; i < Model.Colours.Count; i++)
         {
-            @Html.Label(Model.Colours.ElementAt(i).Name) @Html.EditorFor(c => Model.Colours.ElementAt(i).IsChecked)
+            @Html.Label(Model.Colours.ElementAt(i).Name)
+            @Html.CheckBoxFor(a => Model.Colours[i].IsChecked)
+            @Html.HiddenFor(a => Model.Colours[i].ColourId)
+            @Html.HiddenFor(a => Model.Colours[i].Name)
             <br/>
-            @Html.HiddenFor(c => Model.Colours.ElementAt(i).ColourId)
-            @Html.HiddenFor(c => Model.Colours.ElementAt(i).Name)
         }
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
