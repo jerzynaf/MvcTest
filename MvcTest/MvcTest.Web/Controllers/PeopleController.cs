@@ -32,12 +32,13 @@ namespace MvcTest.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.People.Find(id);
+            var person = db.People.Find(id);
             if (person == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            var personViewModel = Mapper.Map<PersonViewModel>(person);
+            return View(personViewModel);
         }
 
         // POST: People/Edit/5
