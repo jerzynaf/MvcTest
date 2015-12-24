@@ -34,7 +34,14 @@
         </div>
 
         <h3>Favourite Colours</h3>
-        <hr/>
+        <hr />
+        @for (int i = 0; i < Model.Colours.Count; i++)
+        {
+            @Html.Label(Model.Colours.ElementAt(i).Name) @Html.EditorFor(c => Model.Colours.ElementAt(i).IsChecked)
+            <br/>
+            @Html.HiddenFor(c => Model.Colours.ElementAt(i).ColourId)
+            @Html.HiddenFor(c => Model.Colours.ElementAt(i).Name)
+        }
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />

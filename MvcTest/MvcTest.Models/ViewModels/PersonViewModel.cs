@@ -21,7 +21,7 @@ namespace MvcTest.Models.ViewModels
 
         public bool IsEnabled { get; set; }
 
-        public virtual ICollection<ColourViewModel> Colours { get; set; }
+        public virtual List<ColourViewModel> Colours { get; set; }
 
         public string FullName
         {

@@ -11,6 +11,6 @@ namespace MvcTest.Models.ViewModels
         [StringLength(50)]
         public string Name { get; set; }
 
-        public bool IsEnabled { get; set; }
+        public bool IsChecked { get; set; }
     }
 }
