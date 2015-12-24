@@ -9,6 +9,9 @@
             @Html.Label("Name")
         </th>
         <th>
+            @Html.Label("Palindrome")
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.IsAuthorised)
         </th>
         <th>
@@ -24,6 +27,9 @@
         <tr>
             <td>
                 @Html.ActionLink(item.FullName, "Edit", new { @id = item.PersonId })
+            </td>
+            <td>
+                @Html.DisplayFor(i => item.IsPalindrome)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsAuthorised)

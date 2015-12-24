@@ -16,10 +16,12 @@ namespace MvcTest.Models.ViewModels
         [StringLength(50)]
         public string LastName { get; set; }
 
+        [UIHint("YesNo")]
         public bool IsAuthorised { get; set; }
 
         public bool IsValid { get; set; }
 
+        [UIHint("YesNo")]
         public bool IsEnabled { get; set; }
 
         public List<ColourViewModel> Colours { get; set; }
@@ -34,6 +36,23 @@ namespace MvcTest.Models.ViewModels
             get
             {
                 return string.Join(", ", Colours.OrderBy(c => c.Name).Select(c => c.Name)).TrimEnd(new char[] { ',', ' ' });
+            }
+        }
+
+        [UIHint("YesNo")]
+        public bool IsPalindrome
+        {
+            get
+            {
+                var fullName = FirstName.ToUpper() + LastName.ToUpper();
+                for (int i = 0; i < fullName.Length; i++)
+                {
+                    if (!fullName[i].Equals(fullName[fullName.Length - i - 1]))
+                    {
+                        return false;
+                    }
+                }
+                return true;
             }
         }
     }
