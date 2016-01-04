@@ -37,18 +37,9 @@ namespace MvcTest.Web.Controllers
             var personViewModel = Mapper.Map<PersonViewModel>(person);
             var allColours = _colourRepository.GetAllColours();
             var allColourViewModels = Mapper.Map<List<ColourViewModel>>(allColours);
-            personViewModel.Colours.Clear();
             var favouriteColourIds = person.Colours.Select(c => c.ColourId);
-
-            for (int i = 0; i < allColourViewModels.Count; i++)
-            {
-                var tempColour = allColourViewModels.ElementAt(i);
-                if (favouriteColourIds.Contains(tempColour.ColourId))
-                {
-                    tempColour.IsChecked = true;
-                }
-                personViewModel.Colours.Add(tempColour);
-            }
+            personViewModel.Colours.Clear();
+            personViewModel = LoadColourViewModels(personViewModel, favouriteColourIds, allColourViewModels);
 
             return View(personViewModel);
         }
@@ -81,6 +72,20 @@ namespace MvcTest.Web.Controllers
             }
 
             _personRepository.SaveChanges();
+        }
+
+        private PersonViewModel LoadColourViewModels(PersonViewModel personViewModel, IEnumerable<int> favouriteColourIds, List<ColourViewModel> allColourViewModels)
+        {
+            for (int i = 0; i < allColourViewModels.Count; i++)
+            {
+                var tempColour = allColourViewModels.ElementAt(i);
+                if (favouriteColourIds.Contains(tempColour.ColourId))
+                {
+                    tempColour.IsChecked = true;
+                }
+                personViewModel.Colours.Add(tempColour);
+            }
+            return personViewModel;
         }
     }
 }
