@@ -60,7 +60,6 @@ namespace MvcTest.Web.Controllers
         private void UpdatePerson(PersonViewModel personViewModel)
         {
             var person = _personRepository.GetPerson(personViewModel.PersonId);
-            // _context.People.Include(c => c.Colours).Single(p => p.PersonId == personViewModel.PersonId);
             person.IsAuthorised = personViewModel.IsAuthorised;
             person.IsEnabled = personViewModel.IsEnabled;
             person.Colours.Clear();
