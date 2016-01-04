@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
-using MvcTest.Database;
-using MvcTest.Database.Models;
 using MvcTest.Database.Repositories.Interfaces;
 using MvcTest.Models.ViewModels;
 

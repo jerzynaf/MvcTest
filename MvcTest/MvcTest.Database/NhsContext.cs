@@ -2,7 +2,6 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
 using MvcTest.Database.Interfaces;
 using MvcTest.Database.Models;
-using MvcTest.Database.Models.Configurations;
 
 namespace MvcTest.Database
 {

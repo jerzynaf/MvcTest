@@ -17,11 +17,13 @@ namespace MvcTest.Models.ViewModels
         public string LastName { get; set; }
 
         [UIHint("YesNo")]
+        [Display(Name = "Authorised")]
         public bool IsAuthorised { get; set; }
 
         public bool IsValid { get; set; }
 
         [UIHint("YesNo")]
+        [Display(Name = "Enabled")]
         public bool IsEnabled { get; set; }
 
         public List<ColourViewModel> Colours { get; set; }
