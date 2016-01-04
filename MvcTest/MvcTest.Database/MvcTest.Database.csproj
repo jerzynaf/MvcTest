@@ -48,15 +48,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IUpdatable.cs" />
     <Compile Include="Models\Colour.cs" />
+    <Compile Include="Models\Configurations\PersonTypeConfiguration.cs" />
+    <Compile Include="Models\Configurations\ColourTypeConfiguration.cs" />
+    <Compile Include="Interfaces\INhsContext.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="NhsContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ColourRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IColourRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IPersonRepository.cs" />
+    <Compile Include="Repositories\PersonRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

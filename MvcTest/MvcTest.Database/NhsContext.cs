@@ -1,24 +1,30 @@
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration;
+using MvcTest.Database.Interfaces;
 using MvcTest.Database.Models;
+using MvcTest.Database.Models.Configurations;
 
 namespace MvcTest.Database
 {
-    public partial class NhsContext : DbContext
+    public class NhsContext : DbContext, INhsContext
     {
-        public NhsContext()
-            : base("name=NhsContext")
-        {
-        }
+        private readonly EntityTypeConfiguration<Person> _personTypeConfiguration;
+        private readonly EntityTypeConfiguration<Colour> _colourTypeConfiguration;
 
         public virtual DbSet<Colour> Colours { get; set; }
         public virtual DbSet<Person> People { get; set; }
 
+        public NhsContext(EntityTypeConfiguration<Person> personTypeConfiguration, EntityTypeConfiguration<Colour> colourTypeConfiguration)
+            : base("name=NhsContext")
+        {
+            _personTypeConfiguration = personTypeConfiguration;
+            _colourTypeConfiguration = colourTypeConfiguration;
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Colour>()
-                .HasMany(e => e.People)
-                .WithMany(e => e.Colours)
-                .Map(m => m.ToTable("FavouriteColours").MapLeftKey("ColourId").MapRightKey("PersonId"));
+            modelBuilder.Configurations.Add(_personTypeConfiguration);
+            modelBuilder.Configurations.Add(_colourTypeConfiguration);
         }
     }
 }

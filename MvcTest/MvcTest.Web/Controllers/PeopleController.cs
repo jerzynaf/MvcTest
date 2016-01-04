@@ -9,36 +9,40 @@ using System.Web.Mvc;
 using AutoMapper;
 using MvcTest.Database;
 using MvcTest.Database.Models;
+using MvcTest.Database.Repositories.Interfaces;
 using MvcTest.Models.ViewModels;
 
 namespace MvcTest.Web.Controllers
 {
     public class PeopleController : Controller
     {
-        private NhsContext _context = new NhsContext();
+        private readonly IPersonRepository _personRepository;
+        private readonly IColourRepository _colourRepository;
+
+        public PeopleController(IPersonRepository personRepository, IColourRepository colourRepository)
+        {
+            _personRepository = personRepository;
+            _colourRepository = colourRepository;
+        }
 
         // GET: People
         public ActionResult Index()
         {
-            var people = _context.People.OrderBy(p => p.FirstName).ToList();
+            var people = _personRepository.GetAllPeople();
             var peopleViewModels = Mapper.Map<List<PersonViewModel>>(people);
             return View(peopleViewModels);
         }
 
         // GET: People/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var person = _context.People.Find(id);
+            var person = _personRepository.GetPerson(id);
             if (person == null)
             {
                 return HttpNotFound();
             }
             var personViewModel = Mapper.Map<PersonViewModel>(person);
-            var allColours = _context.Colours.Where(c=>c.IsEnabled==true).ToList();
+            var allColours = _colourRepository.GetAllColours();
             var allColourViewModels = Mapper.Map<List<ColourViewModel>>(allColours);
             personViewModel.Colours.Clear();
             var favouriteColourIds = person.Colours.Select(c => c.ColourId);
@@ -63,22 +67,27 @@ namespace MvcTest.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var person = _context.People.Include(c=>c.Colours).Single(p=>p.PersonId==personViewModel.PersonId);
-                person.IsAuthorised = personViewModel.IsAuthorised;
-                person.IsEnabled = personViewModel.IsEnabled;
-                person.Colours.Clear();
-                var pickedColours = personViewModel.Colours.Where(c => c.IsChecked == true).Select(c => c.ColourId);
-                for (int i = 0; i < pickedColours.Count(); i++)
-                {
-                    var colour = _context.Colours.Find(pickedColours.ElementAt(i));
-                    person.Colours.Add(colour);
-                }
-
-                _context.Entry(person).State = EntityState.Modified;
-                _context.SaveChanges();
+                UpdatePerson(personViewModel);
                 return RedirectToAction("Index");
             }
             return View(personViewModel);
+        }
+
+        private void UpdatePerson(PersonViewModel personViewModel)
+        {
+            var person = _personRepository.GetPerson(personViewModel.PersonId);
+            // _context.People.Include(c => c.Colours).Single(p => p.PersonId == personViewModel.PersonId);
+            person.IsAuthorised = personViewModel.IsAuthorised;
+            person.IsEnabled = personViewModel.IsEnabled;
+            person.Colours.Clear();
+            var pickedColours = personViewModel.Colours.Where(c => c.IsChecked == true).Select(c => c.ColourId);
+            for (int i = 0; i < pickedColours.Count(); i++)
+            {
+                var colour = _colourRepository.GetColour(pickedColours.ElementAt(i));
+                person.Colours.Add(colour);
+            }
+
+            _personRepository.SaveChanges();
         }
     }
 }
