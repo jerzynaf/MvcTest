@@ -1,25 +1,25 @@
 ﻿@model IEnumerable<MvcTest.Models.ViewModels.PersonViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "People List";
 }
 <h1>People</h1>
 <table class="table">
     <tr>
         <th>
-            @Html.Label("Name")
+            Name
         </th>
         <th>
-            @Html.Label("Palindrome")
+            Palindrome
         </th>
         <th>
-            @Html.Label("Authorised")
+            Authorised
         </th>
         <th>
-            @Html.Label("Enabled")
+            Enabled
         </th>
         <th>
-            @Html.Label("Colours")
+            Colours
         </th>
     </tr>
 
@@ -39,7 +39,7 @@
                 @Html.DisplayFor(modelItem => item.IsEnabled)
             </td>
             <td>
-                @Html.Label(item.ColoursString)
+                @item.ColoursString
             </td>
         </tr>
     }
