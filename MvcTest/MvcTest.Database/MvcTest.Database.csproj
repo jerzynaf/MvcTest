@@ -48,7 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IUpdatable.cs" />
     <Compile Include="Models\Colour.cs" />
     <Compile Include="Models\Configurations\PersonTypeConfiguration.cs" />
     <Compile Include="Models\Configurations\ColourTypeConfiguration.cs" />

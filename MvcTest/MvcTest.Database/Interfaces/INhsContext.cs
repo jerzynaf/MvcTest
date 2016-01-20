@@ -3,9 +3,11 @@ using MvcTest.Database.Models;
 
 namespace MvcTest.Database.Interfaces
 {
-    public interface INhsContext : IUpdatable
+    public interface INhsContext
     {
         DbSet<Colour> Colours { get; set; }
         DbSet<Person> People { get; set; }
+
+        int SaveChanges();
     }
 }
