@@ -7,6 +7,6 @@ namespace MvcTest.Database.Repositories.Interfaces
     {
         IEnumerable<Person> GetAllPeople();
         Person GetPerson(int id);
-        void SaveChanges();
+        void UpdatePerson();
     }
 }

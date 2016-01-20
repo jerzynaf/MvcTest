@@ -70,7 +70,7 @@ namespace MvcTest.Web.Controllers
                 person.Colours.Add(colour);
             }
 
-            _personRepository.SaveChanges();
+            _personRepository.UpdatePerson();
         }
 
         private PersonViewModel LoadColourViewModels(PersonViewModel personViewModel, IEnumerable<int> favouriteColourIds, List<ColourViewModel> allColourViewModels)

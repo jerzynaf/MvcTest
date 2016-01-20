@@ -25,7 +25,7 @@ namespace MvcTest.Database.Repositories
             return _context.People.Find(id);
         }
 
-        public void SaveChanges()
+        public void UpdatePerson()
         {
             _context.SaveChanges();
         }
