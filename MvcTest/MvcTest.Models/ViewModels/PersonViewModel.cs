@@ -35,10 +35,7 @@ namespace MvcTest.Models.ViewModels
 
         public string ColoursString
         {
-            get
-            {
-                return string.Join(", ", Colours.OrderBy(c => c.Name).Select(c => c.Name)).TrimEnd(new char[] { ',', ' ' });
-            }
+            get { return string.Join(", ", Colours.OrderBy(c => c.Name).Select(c => c.Name)); }
         }
 
         [UIHint("YesNo")]
@@ -47,14 +44,7 @@ namespace MvcTest.Models.ViewModels
             get
             {
                 var fullName = FirstName.ToUpper() + LastName.ToUpper();
-                for (int i = 0; i < fullName.Length; i++)
-                {
-                    if (!fullName[i].Equals(fullName[fullName.Length - i - 1]))
-                    {
-                        return false;
-                    }
-                }
-                return true;
+                return fullName.SequenceEqual(fullName.Reverse());
             }
         }
     }
