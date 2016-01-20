@@ -31,7 +31,8 @@
         </div>
 
         <h3>Favourite Colours</h3>
-        <hr />
+        <hr/>
+
         @for (var i = 0; i < Model.Colours.Count; i++)
         {
             @Html.Label(Model.Colours.ElementAt(i).Name)

@@ -35,7 +35,7 @@ namespace MvcTest.Web.Controllers
                 return HttpNotFound();
             }
             var personViewModel = Mapper.Map<PersonViewModel>(person);
-            var allColours = _colourRepository.GetAllColours();
+            var allColours = _colourRepository.GetAllColours().OrderBy(c=>c.Name);
             var allColourViewModels = Mapper.Map<List<ColourViewModel>>(allColours);
             var favouriteColourIds = person.Colours.Select(c => c.ColourId);
             personViewModel.Colours.Clear();
