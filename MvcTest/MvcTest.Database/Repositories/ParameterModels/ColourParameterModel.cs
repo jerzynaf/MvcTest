@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace MvcTest.Models.ViewModels
+namespace MvcTest.Database.Repositories.ParameterModels
 {
-    public class ColourViewModel
+    public class ColourParameterModel
     {
         public int ColourId { get; set; }
 

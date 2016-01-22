@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using MvcTest.Database.Models;
+using MvcTest.Database.Repositories.ParameterModels;
+using MvcTest.Models.ViewModels;
 
 namespace MvcTest.Database.Repositories.Interfaces
 {
@@ -7,6 +9,7 @@ namespace MvcTest.Database.Repositories.Interfaces
     {
         IEnumerable<Person> GetAllPeople();
         Person GetPerson(int id);
-        void UpdatePerson();
+        PersonViewModel GetPersonViewModel(int id);
+        void UpdatePerson(PersonParameterModel personParameterModel);
     }
 }

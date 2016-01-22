@@ -13,7 +13,12 @@ namespace MvcTest.Database
         public virtual DbSet<Colour> Colours { get; set; }
         public virtual DbSet<Person> People { get; set; }
 
-        public NhsContext(EntityTypeConfiguration<Person> personTypeConfiguration, EntityTypeConfiguration<Colour> colourTypeConfiguration)
+        public NhsContext()
+        {
+        }
+
+        public NhsContext(EntityTypeConfiguration<Person> personTypeConfiguration,
+            EntityTypeConfiguration<Colour> colourTypeConfiguration)
             : base("name=NhsContext")
         {
             _personTypeConfiguration = personTypeConfiguration;

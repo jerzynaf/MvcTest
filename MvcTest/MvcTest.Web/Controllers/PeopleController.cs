@@ -2,7 +2,9 @@
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
+using MvcTest.Database.Models;
 using MvcTest.Database.Repositories.Interfaces;
+using MvcTest.Database.Repositories.ParameterModels;
 using MvcTest.Models.ViewModels;
 
 namespace MvcTest.Web.Controllers
@@ -10,12 +12,10 @@ namespace MvcTest.Web.Controllers
     public class PeopleController : Controller
     {
         private readonly IPersonRepository _personRepository;
-        private readonly IColourRepository _colourRepository;
 
-        public PeopleController(IPersonRepository personRepository, IColourRepository colourRepository)
+        public PeopleController(IPersonRepository personRepository)
         {
             _personRepository = personRepository;
-            _colourRepository = colourRepository;
         }
 
         [HttpGet]
@@ -30,20 +30,7 @@ namespace MvcTest.Web.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var person = _personRepository.GetPerson(id);
-
-            if (person == null)
-            {
-                return HttpNotFound();
-            }
-
-            var personViewModel = Mapper.Map<PersonViewModel>(person);
-            var allColours = _colourRepository.GetAllColours().OrderBy(c => c.Name);
-            var allColourViewModels = Mapper.Map<List<ColourViewModel>>(allColours);
-            var favouriteColourIds = person.Colours.Select(c => c.ColourId);
-
-            personViewModel.Colours.Clear();
-            personViewModel = LoadColourViewModels(personViewModel, favouriteColourIds, allColourViewModels);
+            var personViewModel = _personRepository.GetPersonViewModel(id);
 
             return View(personViewModel);
         }
@@ -63,38 +50,8 @@ namespace MvcTest.Web.Controllers
 
         private void UpdatePerson(PersonViewModel personViewModel)
         {
-            var person = _personRepository.GetPerson(personViewModel.PersonId);
-
-            person.IsAuthorised = personViewModel.IsAuthorised;
-            person.IsEnabled = personViewModel.IsEnabled;
-            person.Colours.Clear();
-
-            var pickedColours = personViewModel.Colours.Where(c => c.IsChecked == true).Select(c => c.ColourId);
-
-            for (int i = 0; i < pickedColours.Count(); i++)
-            {
-                var colour = _colourRepository.GetColour(pickedColours.ElementAt(i));
-                person.Colours.Add(colour);
-            }
-
-            _personRepository.UpdatePerson();
-        }
-
-        private PersonViewModel LoadColourViewModels(PersonViewModel personViewModel, IEnumerable<int> favouriteColourIds, List<ColourViewModel> allColourViewModels)
-        {
-            for (int i = 0; i < allColourViewModels.Count; i++)
-            {
-                var tempColour = allColourViewModels.ElementAt(i);
-
-                if (favouriteColourIds.Contains(tempColour.ColourId))
-                {
-                    tempColour.IsChecked = true;
-                }
-
-                personViewModel.Colours.Add(tempColour);
-            }
-
-            return personViewModel;
+            var personParameterModel = Mapper.Map<PersonParameterModel>(personViewModel);
+            _personRepository.UpdatePerson(personParameterModel);
         }
     }
 }
