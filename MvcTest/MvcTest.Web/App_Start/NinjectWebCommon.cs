@@ -1,6 +1,7 @@
 using System;
 using System.Data.Entity.ModelConfiguration;
 using System.Web;
+using System.Web.Http;
 using AutoMapper;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using MvcTest.Database;
@@ -12,9 +13,10 @@ using MvcTest.Database.Repositories.Interfaces;
 using MvcTest.Web;
 using Ninject;
 using Ninject.Web.Common;
+using WebApiContrib.IoC.Ninject;
 
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof (NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof (NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
 
 namespace MvcTest.Web
 {
@@ -27,8 +29,8 @@ namespace MvcTest.Web
         /// </summary>
         public static void Start()
         {
-            DynamicModuleUtility.RegisterModule(typeof (OnePerRequestHttpModule));
-            DynamicModuleUtility.RegisterModule(typeof (NinjectHttpModule));
+            DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
+            DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
         }
 
@@ -53,6 +55,9 @@ namespace MvcTest.Web
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
                 RegisterServices(kernel);
+
+                GlobalConfiguration.Configuration.DependencyResolver = new NinjectResolver(kernel);
+
                 return kernel;
             }
             catch
