@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using System.Web.Mvc;
@@ -9,6 +10,8 @@ using AutoMapper;
 using MvcTest.Database.Repositories.Interfaces;
 using MvcTest.Database.Repositories.ParameterModels;
 using MvcTest.Models.ViewModels;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace MvcTest.Web.Areas
 {
@@ -22,44 +25,43 @@ namespace MvcTest.Web.Areas
             _personRepository = personRepository;
         }
 
-        public IHttpActionResult GetPeopleViewModels()
+        public HttpResponseMessage GetPeopleViewModels()
         {
             var people = _personRepository.GetAllPeople();
             var peopleViewModels = Mapper.Map<List<PersonViewModel>>(people);
 
-            return Json(peopleViewModels);
+            return Request.CreateResponse(HttpStatusCode.OK, peopleViewModels, Configuration.Formatters.JsonFormatter);
         }
 
         [ResponseType(typeof(PersonViewModel))]
-        public IHttpActionResult GetPersonViewModel(int id)
+        public HttpResponseMessage GetPersonViewModel(int id)
         {
             var contact = _personRepository.GetPersonViewModel(id);
             if (contact == null)
             {
-                return NotFound();
+                return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            return Json(contact);
+            return Request.CreateResponse(HttpStatusCode.OK, contact, Configuration.Formatters.JsonFormatter);
         }
 
-        // PUT: api/Contacts/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutPersonViewModel(int id, PersonViewModel personViewModel)
+        public HttpResponseMessage PutPersonViewModel(int id, PersonViewModel personViewModel)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
             }
 
             if (id != personViewModel.PersonId)
             {
-                return BadRequest();
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
 
             var personParameterModel = Mapper.Map<PersonParameterModel>(personViewModel);
             _personRepository.UpdatePerson(personParameterModel);
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Request.CreateResponse(HttpStatusCode.NoContent);
         }
     }
 }
