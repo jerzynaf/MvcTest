@@ -8,7 +8,7 @@
       });
 
       peopleListView.on("childview:person:edit", function (childView, model) {
-        alert("Edit person");
+        PeopleManager.PeopleApp.Edit.Controller.editPerson(model);
       });
 
       PeopleManager.mainRegion.show(peopleListView);

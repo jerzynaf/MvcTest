@@ -138,6 +138,7 @@
     <Content Include="Assets\img\glyphicons-halflings-white.png" />
     <Content Include="Assets\img\glyphicons-halflings.png" />
     <Content Include="Assets\js\app.js" />
+    <Content Include="Assets\js\apps\people\edit\edit_controller.js" />
     <Content Include="Assets\js\apps\people\list\list_controller.js" />
     <Content Include="Assets\js\apps\people\list\list_view.js" />
     <Content Include="Assets\js\entities\person.js" />

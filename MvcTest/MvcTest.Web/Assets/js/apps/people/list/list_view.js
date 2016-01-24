@@ -1,23 +1,24 @@
-﻿PeopleManager.module("PeopleApp.List", function(List, PeopleManager, Backbone, Marionette, $, _) {
+﻿PeopleManager.module("PeopleApp.List", function (List, PeopleManager, Backbone, Marionette, $, _) {
   List.PersonView = Marionette.ItemView.extend({
     template: "#person-template",
-
+    tagName: "tr",
     events: {
-      "click a": "editPerson"
+      "click a.js-edit": "editPerson"
     },
 
     editPerson: function (e) {
       e.preventDefault();
+      e.stopPropagation();
       this.trigger("person:edit", this.model);
-    },
-    tagName: "tr"
+    }
+
   });
 
   List.PeopleView = Marionette.CompositeView.extend({
     tagName: "table",
     className: "table table-hover",
-    template:"#people-list",
+    template: "#people-list",
     childView: List.PersonView,
     childViewContainer: "tbody"
-});
+  });
 });
