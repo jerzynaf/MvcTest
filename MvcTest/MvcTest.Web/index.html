@@ -21,44 +21,15 @@
     <script src="./Assets/js/vendor/backbone.js"></script>
 <script src="./Assets/js/vendor/backbone.marionette.js"></script>
 <script src="Assets/js/app.js"></script>
-    <script src="Assets/js/entities/person.js"></script>
+<script src="Assets/js/entities/person.js"></script>
+    <script src="Assets/js/apps/people/list/list_view.js"></script>
     <script type="text/javascript">
-
-        PeopleManager.PersonView = Marionette.ItemView.extend({
-            template: "#person-template",
-
-            events: {
-                "click a": "alertFirstName"
-            },
-
-            alertFirstName: function () {
-                alert(this.model.escape("firstName"));
-            },
-            tagName: "li"
-        });
-
-        PeopleManager.PeopleView = Marionette.CollectionView.extend({
-            tagName: "ul",
-            childView: PeopleManager.PersonView
-        });
-
-        //PeopleManager.on("before:start", function () {
-        //    var RegionContainer = Marionette.LayoutView.extend({
-        //        el: "#app-container",
-
-        //        regions: {
-        //            main: "#main-region"
-        //        }
-        //    });
-
-        //    PeopleManager.regions = new RegionContainer();
-        //});
 
         PeopleManager.on("start", function () {
 
             var people = PeopleManager.request("person:entities");
 
-            var peopleListView = new PeopleManager.PeopleView({
+            var peopleListView = new PeopleManager.PeopleApp.List.PeopleView({
                 collection: people
             });
 
