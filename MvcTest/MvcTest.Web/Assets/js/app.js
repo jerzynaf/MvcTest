@@ -5,5 +5,8 @@ PeopleManager.addRegions({
 });
 
 PeopleManager.on("start", function () {
-  PeopleManager.PeopleApp.List.Controller.listPeople();
+  if (Backbone.history) {
+    Backbone.history.start();
+  }
+  //PeopleManager.PeopleApp.List.Controller.listPeople();
 });
