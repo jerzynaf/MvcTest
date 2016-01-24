@@ -137,6 +137,10 @@
     <Content Include="Assets\css\bootstrap.css" />
     <Content Include="Assets\img\glyphicons-halflings-white.png" />
     <Content Include="Assets\img\glyphicons-halflings.png" />
+    <Content Include="Assets\js\app.js" />
+    <Content Include="Assets\js\apps\people\list\list_controller.js" />
+    <Content Include="Assets\js\apps\people\list\list_view.js" />
+    <Content Include="Assets\js\entities\person.js" />
     <Content Include="Assets\js\vendor\backbone.js" />
     <Content Include="Assets\js\vendor\backbone.marionette.js" />
     <Content Include="Assets\js\vendor\jquery.js" />
@@ -205,7 +209,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Main.ts" />
     <TypeScriptCompile Include="Scripts\typings\backbone\backbone-global.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\backbone\backbone.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />

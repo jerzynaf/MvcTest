@@ -19,74 +19,54 @@
     <script src="./Assets/js/vendor/json2.js"></script>
     <script src="./Assets/js/vendor/underscore.js"></script>
     <script src="./Assets/js/vendor/backbone.js"></script>
-    <script src="./Assets/js/vendor/backbone.marionette.js"></script>
-    <script src="Main.js"></script>
-    <!--<script type="text/javascript">
-    var PeopleManager = new Marionette.Application();
+<script src="./Assets/js/vendor/backbone.marionette.js"></script>
+<script src="Assets/js/app.js"></script>
+    <script src="Assets/js/entities/person.js"></script>
+    <script type="text/javascript">
 
-    PeopleManager.Person = Backbone.Model.extend({
-        defaults: {
-            firstName: "",
-            lastName: ""
-        }
-    });
+        PeopleManager.PersonView = Marionette.ItemView.extend({
+            template: "#person-template",
 
-    PeopleManager.PeopleCollection = Backbone.Collection.extend({
-        model: PeopleManager.Person
-    });
+            events: {
+                "click a": "alertFirstName"
+            },
 
-    PeopleManager.PersonView = Marionette.ItemView.extend({
-        template: "#person-template",
-
-        events: {
-            "click a": "alertFirstName"
-        },
-
-        alertFirstName: function () {
-            alert(this.model.escape("firstName"));
-        }
-    });
-
-    PeopleManager.PeopleView = Marionette.CollectionView.extend({
-        tagname: "ul",
-        childView: PeopleManager.PersonView
-    });
-
-    PeopleManager.on("before:start", function () {
-        var RegionContainer = Marionette.LayoutView.extend({
-            el: "#app-container",
-
-            regions: {
-                main: "#main-region"
-            }
+            alertFirstName: function () {
+                alert(this.model.escape("firstName"));
+            },
+            tagName: "li"
         });
 
-        PeopleManager.regions = new RegionContainer();
-    });
-
-    PeopleManager.on("start", function () {
-        var people = new PeopleManager.PeopleCollection(
-            [
-                {
-                    firstName: "Alice",
-                    lastName: "Arten"
-                },
-                {
-                    firstName: "James",
-                    lastName: "Johnson"
-                }
-            ]);
-
-
-        var peopleListView = new PeopleManager.PeopleView({
-            collection: people
+        PeopleManager.PeopleView = Marionette.CollectionView.extend({
+            tagName: "ul",
+            childView: PeopleManager.PersonView
         });
 
-        PeopleManager.regions.main.show(peopleListView);
-    });
+        //PeopleManager.on("before:start", function () {
+        //    var RegionContainer = Marionette.LayoutView.extend({
+        //        el: "#app-container",
 
-    PeopleManager.start();
-    </script>-->
+        //        regions: {
+        //            main: "#main-region"
+        //        }
+        //    });
+
+        //    PeopleManager.regions = new RegionContainer();
+        //});
+
+        PeopleManager.on("start", function () {
+
+            var people = PeopleManager.request("person:entities");
+
+            var peopleListView = new PeopleManager.PeopleView({
+                collection: people
+            });
+
+            PeopleManager.mainRegion.show(peopleListView);
+        });
+
+        PeopleManager.start();
+    </script>
 
 </body>
 </html>

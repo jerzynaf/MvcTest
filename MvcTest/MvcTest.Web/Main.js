@@ -23,7 +23,7 @@ PeopleManager.PersonView = Marionette.ItemView.extend({
 });
 
 PeopleManager.PeopleView = Marionette.CollectionView.extend({
-    tagname: "ul",
+    tagName: "ul",
     childView: PeopleManager.PersonView
 });
 
@@ -58,4 +58,5 @@ PeopleManager.on("start", function () {
 });
 
 PeopleManager.start();
+//27
 //# sourceMappingURL=Main.js.map
