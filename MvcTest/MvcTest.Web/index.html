@@ -22,18 +22,12 @@
 <script src="./Assets/js/vendor/backbone.marionette.js"></script>
 <script src="Assets/js/app.js"></script>
 <script src="Assets/js/entities/person.js"></script>
-    <script src="Assets/js/apps/people/list/list_view.js"></script>
+<script src="Assets/js/apps/people/list/list_view.js"></script>
+    <script src="Assets/js/apps/people/list/list_controller.js"></script>
     <script type="text/javascript">
 
         PeopleManager.on("start", function () {
-
-            var people = PeopleManager.request("person:entities");
-
-            var peopleListView = new PeopleManager.PeopleApp.List.PeopleView({
-                collection: people
-            });
-
-            PeopleManager.mainRegion.show(peopleListView);
+            PeopleManager.PeopleApp.List.Controller.listPeople();
         });
 
         PeopleManager.start();
