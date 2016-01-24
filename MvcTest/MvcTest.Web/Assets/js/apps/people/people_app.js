@@ -2,7 +2,7 @@
   PeopleApp.Router = Marionette.AppRouter.extend({
     appRoutes: {
       "people": "listPeople",
-      "people/edit/:id":"editPerson"
+      "people/edit/:id": "editPerson"
     }
   });
 
@@ -10,8 +10,8 @@
     listPeople: function () {
       PeopleApp.List.Controller.listPeople();
     },
-    editPerson: function() {
-      PeopleApp.List.Controller.editPerson(id);
+    editPerson: function (id) {
+      PeopleApp.Edit.Controller.editPerson(id);
     }
   };
 
@@ -20,9 +20,9 @@
     API.listPeople();
   });
 
-  PeopleManager.on("person:edit", function(id) {
+  PeopleManager.on("person:edit", function (id) {
     PeopleManager.navigate("people/edit/" + id);
-    API.editPerson(model);
+    API.editPerson(id);
   });
 
   PeopleManager.addInitializer(function () {

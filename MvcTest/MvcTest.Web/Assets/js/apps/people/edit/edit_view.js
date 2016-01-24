@@ -2,4 +2,8 @@
   Edit.PersonView = Marionette.ItemView.extend({
   template: "#person-edit"
   });
+
+  Edit.MissingPerson = Marionette.ItemView.extend({
+  template:"#missing-person-view"
+  });
 });
