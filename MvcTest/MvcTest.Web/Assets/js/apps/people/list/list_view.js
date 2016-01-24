@@ -12,9 +12,11 @@
     tagName: "tr"
   });
 
-  List.PeopleView = Marionette.CollectionView.extend({
+  List.PeopleView = Marionette.CompositeView.extend({
     tagName: "table",
-    className:"table table-hover",
-    childView: List.PersonView
+    className: "table table-hover",
+    template:"#people-list",
+    childView: List.PersonView,
+    childViewContainer: "tbody"
 });
 });
