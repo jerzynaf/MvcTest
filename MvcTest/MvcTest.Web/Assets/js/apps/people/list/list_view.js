@@ -9,11 +9,12 @@
     alertFirstName: function () {
       alert(this.model.escape("firstName"));
     },
-    tagName: "li"
+    tagName: "tr"
   });
 
   List.PeopleView = Marionette.CollectionView.extend({
-    tagName: "ul",
+    tagName: "table",
+    className:"table table-hover",
     childView: List.PersonView
 });
 });
