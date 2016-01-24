@@ -3,11 +3,12 @@
     template: "#person-template",
 
     events: {
-      "click a": "alertFirstName"
+      "click a": "editPerson"
     },
 
-    alertFirstName: function () {
-      alert(this.model.escape("firstName"));
+    editPerson: function (e) {
+      e.preventDefault();
+      this.trigger("person:edit", this.model);
     },
     tagName: "tr"
   });
