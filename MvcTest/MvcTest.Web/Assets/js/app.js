@@ -18,8 +18,7 @@ PeopleManager.on("start", function () {
     Backbone.history.start();
   }
 
-  if (Backbone.history.fragment === "") {
-    Backbone.history.navigate("people");
-    PeopleManager.PeopleApp.List.Controller.listPeople();
+  if (this.getCurrentRoute() === "") {
+    PeopleManager.trigger("people:list");
   }
 });

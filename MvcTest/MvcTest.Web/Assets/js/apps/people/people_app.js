@@ -1,15 +1,29 @@
 ﻿PeopleManager.module("PeopleApp", function (PeopleApp, PeopleManager, Backbone, Marionette, $, _) {
   PeopleApp.Router = Marionette.AppRouter.extend({
     appRoutes: {
-      "people": "listPeople"
+      "people": "listPeople",
+      "people/edit/:id":"editPerson"
     }
   });
 
   var API = {
     listPeople: function () {
       PeopleApp.List.Controller.listPeople();
+    },
+    editPerson: function() {
+      PeopleApp.List.Controller.editPerson(id);
     }
   };
+
+  PeopleManager.on("people:list", function () {
+    PeopleManager.navigate("people");
+    API.listPeople();
+  });
+
+  PeopleManager.on("person:edit", function(id) {
+    PeopleManager.navigate("people/edit/" + id);
+    API.editPerson(model);
+  });
 
   PeopleManager.addInitializer(function () {
     new PeopleApp.Router({

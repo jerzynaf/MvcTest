@@ -1,6 +1,7 @@
-﻿PeopleManager.module("Entities", function(Entities, ContactManager, Backbone, Marionette, $, _) {
+﻿PeopleManager.module("Entities", function (Entities, ContactManager, Backbone, Marionette, $, _) {
   Entities.Person = Backbone.Model.extend({
     defaults: {
+      id: 0,
       firstName: "",
       lastName: ""
     }
@@ -12,14 +13,16 @@
 
   var people;
 
-  var initializePeople = function() {
+  var initializePeople = function () {
     people = new PeopleManager.Entities.PeopleCollection(
                 [
                     {
+                      id: 1,
                       firstName: "Alice",
                       lastName: "Arten"
                     },
                     {
+                      id: 2,
                       firstName: "James",
                       lastName: "Johnson"
                     }
@@ -28,7 +31,7 @@
   };
 
   var API = {
-    getPeopleEntities: function() {
+    getPeopleEntities: function () {
       if (people === undefined) {
         initializePeople();
       }
@@ -36,7 +39,7 @@
     }
   };
 
-  PeopleManager.reqres.setHandler("person:entities", function() {
+  PeopleManager.reqres.setHandler("person:entities", function () {
     return API.getPeopleEntities();
   });
 });

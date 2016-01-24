@@ -8,8 +8,12 @@
       });
 
       peopleListView.on("childview:person:edit", function (childView, model) {
-        PeopleManager.PeopleApp.Edit.Controller.editPerson(model);
+        //PeopleManager.navigate("people/edit/" + model.get("id"));
+        //PeopleManager.PeopleApp.Edit.Controller.editPerson(model);
+        PeopleManager.trigger("person:edit", model.get("id"));
       });
+
+
 
       PeopleManager.mainRegion.show(peopleListView);
     }

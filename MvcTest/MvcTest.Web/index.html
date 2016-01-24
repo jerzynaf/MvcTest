@@ -14,7 +14,7 @@
     </div>
     <!--TODO move templates to separate files-->
     <script type="text/template" id="person-template">
-        <td><a href="#" class="js-edit"><%- firstName %> <%- lastName %></a></td>
+        <td><a href="#people/edit/<%= id %>" class="js-edit"><%- firstName %> <%- lastName %></a></td>
     </script>
 
     <script type="text/template" id="people-list">
