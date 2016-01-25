@@ -12,6 +12,10 @@
           personEditView = new Edit.PersonView({
             model: person
           });
+
+          personEditView.on("person:cancelEditing", function () {
+            PeopleManager.trigger("people:list");
+          });
         } else {
           personEditView = new Edit.MissingPerson();
         }
