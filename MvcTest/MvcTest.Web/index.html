@@ -24,12 +24,29 @@
         <tbody></tbody>
     </script>
 
+
+    <!--TODO Not needed?-->
     <script type="text/template" id="person-edit">
         <h1><%= firstName %> <%=lastName %></h1>
     </script>
 
     <script type="text/template" id="missing-person-view">
         <div class="alert alert-error">This contact doesn't exist!</div>
+    </script>
+
+    <!--TODO Cancel button-->
+    <script type="text/template" id="person-form">
+        <form>
+            <div class="control-group">
+                <label for="person-firstName" class="control-label">First name:</label>
+                <input id="person-firstName" name="firstName" type="text" value="<%- firstName %>" />
+            </div>
+            <div class="control-group">
+                <label for="person-lastName" class="control-label">Last name:</label>
+                <input id="person-lastName" name="lastName" type="text" value="<%- lastName %>" />
+            </div>
+            <button class="btn js-submit">Save</button>
+        </form>
     </script>
 
     <script src="./Assets/js/vendor/jquery.js"></script>

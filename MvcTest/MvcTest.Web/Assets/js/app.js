@@ -22,3 +22,6 @@ PeopleManager.on("start", function () {
     PeopleManager.trigger("people:list");
   }
 });
+
+//TODO loading view 104
+//TODO delete all alerts
