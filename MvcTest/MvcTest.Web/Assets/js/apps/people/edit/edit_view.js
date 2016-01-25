@@ -8,7 +8,8 @@
 
     submitClicked: function (e) {
       e.preventDefault();
-      alert("edit contact");
+      var data = Backbone.Syphon.serialize(this);
+      this.trigger("form:submit", data);
     },
 
     cancelClicked: function (e) {

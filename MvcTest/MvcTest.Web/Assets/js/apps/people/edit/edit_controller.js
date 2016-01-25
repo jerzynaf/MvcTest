@@ -16,6 +16,11 @@
           personEditView.on("person:cancelEditing", function () {
             PeopleManager.trigger("people:list");
           });
+
+          personEditView.on("form:submit", function(data) {
+            person.save(data);
+            PeopleManager.trigger("people:list");
+          });
         } else {
           personEditView = new Edit.MissingPerson();
         }

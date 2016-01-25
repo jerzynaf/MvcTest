@@ -35,7 +35,7 @@
     </script>
 
     <!--TODO Cancel button-->
-<script type="text/template" id="person-form">
+    <script type="text/template" id="person-form">
         <form>
             <div class="control-group">
                 <label for="person-firstName" class="control-label">First name:</label>
@@ -45,6 +45,11 @@
                 <label for="person-lastName" class="control-label">Last name:</label>
                 <input id="person-lastName" name="lastName" type="text" value="<%- lastName %>" />
             </div>
+            <div class="form-group">
+                <input class="check-box" id="person-isAuthorised" name="isAuthorised" type="checkbox" <%= isAuthorised === true ?  'checked' : '' %>>
+                <label for="person-isAuthorised" id="control-label">Authorised</label>
+            </div>
+
             <button class="btn js-submit">Save</button>
             <button class="btn js-cancel">Cancel</button>
         </form>
@@ -55,6 +60,7 @@
     <script src="./Assets/js/vendor/underscore.js"></script>
     <script src="./Assets/js/vendor/backbone.js"></script>
     <script src="./Assets/js/vendor/backbone.marionette.js"></script>
+    <script src="Assets/js/vendor/backbone.syphon.js"></script>
     <script src="Assets/js/app.js"></script>
     <script src="Assets/js/entities/person.js"></script>
     <script src="Assets/js/apps/people/people_app.js"></script>
