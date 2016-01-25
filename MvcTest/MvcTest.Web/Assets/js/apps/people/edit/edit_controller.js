@@ -1,19 +1,24 @@
 ﻿PeopleManager.module("PeopleApp.Edit", function (Edit, PeopleManager, Backbone, Marionette, $, _) {
   Edit.Controller = {
     editPerson: function (id) {
-      var people = PeopleManager.request("person:entities");
-      var model = people.get(id);
-      var personEditView;
+      //var people = PeopleManager.request("person:entities");
+      //var model = people.get(id);
+      var fetchingPerson = PeopleManager.request("person:entity", id);
 
-      if (model !== undefined) {
-        personEditView = new Edit.PersonView({
-          model: model
-        });
-      } else {
-        personEditView = new Edit.MissingPerson();
-      }
+      $.when(fetchingPerson).done(function (person) {
+        var personEditView;
 
-      PeopleManager.mainRegion.show(personEditView);
+        if (person !== undefined) {
+          personEditView = new Edit.PersonView({
+            model: person
+          });
+        } else {
+          personEditView = new Edit.MissingPerson();
+        }
+
+        PeopleManager.mainRegion.show(personEditView);
+      });
+
     }
   }
 });
