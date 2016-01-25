@@ -17,6 +17,10 @@
         <td><a href="#people/edit/<%= id %>" class="js-edit"><%- firstName %> <%- lastName %></a></td>
     </script>
 
+    <script type="text/template" id="colour-template">
+        <input type="checkbox" <%= isChecked === true ?  'checked' : '' %>/> <%- name %> aaa
+    </script>
+
     <script type="text/template" id="people-list">
         <thead>
             <tr><th>Name</th></tr>
@@ -26,9 +30,11 @@
 
 
     <!--TODO Not needed?-->
-    <script type="text/template" id="person-edit">
+    <!--<script type="text/template" id="person-edit">
         <h1><%= firstName %> <%=lastName %></h1>
-    </script>
+    </script>-->
+
+
 
     <script type="text/template" id="missing-person-view">
         <div class="alert alert-error">This contact doesn't exist!</div>
@@ -46,10 +52,10 @@
                 <input id="person-lastName" name="lastName" type="text" value="<%- lastName %>" />
             </div>
             <div class="form-group">
-                <input class="check-box" id="person-isAuthorised" name="isAuthorised" type="checkbox" <%= isAuthorised === true ?  'checked' : '' %>>
+                <input class="check-box" id="person-isAuthorised" name="isAuthorised" type="checkbox">>
                 <label for="person-isAuthorised" id="control-label">Authorised</label>
             </div>
-
+            <div id="colourList"></div>
             <button class="btn js-submit">Save</button>
             <button class="btn js-cancel">Cancel</button>
         </form>
@@ -69,9 +75,6 @@
     <script src="Assets/js/apps/people/edit/edit_controller.js"></script>
     <script src="Assets/js/apps/people/edit/edit_view.js"></script>
     <script type="text/javascript">
-
-
-
         PeopleManager.start();
     </script>
 

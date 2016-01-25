@@ -1,18 +1,23 @@
 ﻿PeopleManager.module("Entities", function (Entities, ContactManager, Backbone, Marionette, $, _) {
   Entities.Person = Backbone.Model.extend({
-    urlRoot: "http://localhost:1288/api/PeopleApi",
+    urlRoot: "api/PeopleApi",
     defaults: {
-      firstName: "a",
-      lastName: "a"
+      firstName: "",
+      lastName: ""
     }
   });
 
   Entities.PeopleCollection = Backbone.Collection.extend({
-    url: "http://localhost:1288/api/PeopleApi",
+    url: "api/PeopleApi",
     model: Entities.Person
   });
 
+  Entities.ColourItemModel = Backbone.Model.extend({
+  });
 
+  Entities.ColourCollectionModel = Backbone.Collection.extend({
+  model:Entities.ColourItemModel
+  });
   //var initializePeople = function () {
   //  var people = new PeopleManager.Entities.PeopleCollection(
   //              [
@@ -67,6 +72,11 @@
       //}, 2000);
 
       return defer.promise();
+    },
+
+    getColoursEntities: function(rawColours) {
+      var colourCollection = new Entities.ColourCollectionModel(rawColours);
+      return colourCollection;
     }
 
   };
@@ -77,5 +87,9 @@
 
   PeopleManager.reqres.setHandler("person:entity", function (id) {
     return API.getPersonEntity(id);
+  });
+
+  PeopleManager.reqres.setHandler("colour:entities", function(rawColours) {
+    return API.getColoursEntities(rawColours);
   });
 });

@@ -25,3 +25,6 @@ PeopleManager.on("start", function () {
 
 //TODO loading view 104
 //TODO delete all alerts
+//TODO jquery flash success
+//TODO require-js page 222
+
