@@ -22,6 +22,15 @@
             PeopleManager.trigger("people:list");
           });
 
+         
+
+        } else {
+          personEditView = new Edit.MissingPerson();
+        }
+
+        // PeopleManager.mainRegion.show(personEditView);
+       
+        personEditView.on("show", function () {
           var rawColours = person.get("colours");
           var colourCollection = PeopleManager.request("colour:entities", rawColours);
           //remove
@@ -29,14 +38,15 @@
             collection: colourCollection
           });
 
-        } else {
-          personEditView = new Edit.MissingPerson();
-        }
+          personEditView.colourListRegion.show(coloursView);
+           });
 
-        // PeopleManager.mainRegion.show(personEditView);
-        PeopleManager.mainRegion.show(coloursView);
+        PeopleManager.mainRegion.show(personEditView);
       });
 
     }
+
   }
+
+
 });
