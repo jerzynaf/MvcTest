@@ -21,4 +21,12 @@
     childView: List.PersonView,
     childViewContainer: "tbody"
   });
+
+  List.PeopleLayout = Backbone.Marionette.LayoutView.extend({
+    template: "#list-layout",
+    regions: {
+      peopleListRegion: "#peopleListRegion"
+    }
+  });
+
 });

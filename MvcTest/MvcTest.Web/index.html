@@ -16,7 +16,7 @@
     <!--TODO move templates to separate files-->
     <script type="text/template" id="person-template">
         <td>
-            <a href="#people/edit/<%= id %>" class="js-edit"><%- firstName %> <%- lastName %></a>
+            <a href="#people/edit/<%= id %>" class="js-edit"><%= firstName %> <%= lastName %></a>
         </td>
         <td>
             <%= yesNo(isPalindrome) %>
@@ -28,8 +28,9 @@
             <%= yesNo(isEnabled) %>
         </td>
         <td>
-            <%- coloursString %>
+            <%= coloursString %>
         </td>
+
     </script>
 
     <script type="text/template" id="colour-template">
@@ -37,7 +38,7 @@
     </script>
 
     <script type="text/template" id="people-list">
-        <!--<h1>People</h1>-->
+
         <thead>
             <tr>
                 <th>
@@ -93,7 +94,13 @@
         </form>
     </script>
 
-    <script src="./Assets/js/vendor/jquery.js"></script>
+    <script type="text/template" id="list-layout">
+        <h1>People</h1>
+        <div id="peopleListRegion"></div>
+    </script>
+
+    <script src="./Assets/js/vendor/jquery.js">
+    </script>
     <script src="./Assets/js/vendor/json2.js"></script>
     <script src="./Assets/js/vendor/underscore.js"></script>
     <script src="./Assets/js/vendor/backbone.js"></script>

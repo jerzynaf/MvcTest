@@ -15,9 +15,16 @@
           PeopleManager.trigger("person:edit", model.get("id"));
         });
 
+        var peopleLayout = new List.PeopleLayout();
+        //peopleLayout.peopleListRegion.show(peopleListView);
+        peopleLayout.on("show", function () {
+         
+          peopleLayout.peopleListRegion.show(peopleListView);
+        });
 
 
-        PeopleManager.mainRegion.show(peopleListView);
+
+        PeopleManager.mainRegion.show(peopleLayout);
 
       });
 
