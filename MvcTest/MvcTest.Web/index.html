@@ -5,6 +5,7 @@
     <title>Marionette People Manager</title>
     <link href="./Assets/css/bootstrap.css" rel="stylesheet">
     <link href="./Assets/css/application.css" rel="stylesheet">
+    <link href="Content/Style.css" rel="stylesheet" />
 </head>
 <body>
     <div id="app-container">
@@ -13,18 +14,18 @@
         </div>
     </div>
     <!--TODO move templates to separate files-->
-<script type="text/template" id="person-template">
+    <script type="text/template" id="person-template">
         <td>
             <a href="#people/edit/<%= id %>" class="js-edit"><%- firstName %> <%- lastName %></a>
         </td>
         <td>
-            <%- isPalindrome %>
+            <%= yesNo(isPalindrome) %>
         </td>
         <td>
-            <%- isAuthorised %>
+            <%= yesNo(isAuthorised) %>
         </td>
         <td>
-            <%- isEnabled %>
+            <%= yesNo(isEnabled) %>
         </td>
         <td>
             <%- coloursString %>
@@ -98,6 +99,7 @@
     <script src="./Assets/js/vendor/backbone.js"></script>
     <script src="./Assets/js/vendor/backbone.marionette.js"></script>
     <script src="Assets/js/vendor/backbone.syphon.js"></script>
+    <script src="Assets/js/apps/people/list/list_yesNo.js"></script>
     <script src="Assets/js/app.js"></script>
     <script src="Assets/js/entities/person.js"></script>
     <script src="Assets/js/apps/people/people_app.js"></script>
@@ -105,6 +107,7 @@
     <script src="Assets/js/apps/people/list/list_controller.js"></script>
     <script src="Assets/js/apps/people/edit/edit_controller.js"></script>
     <script src="Assets/js/apps/people/edit/edit_view.js"></script>
+
     <script type="text/javascript">
         PeopleManager.start();
     </script>
