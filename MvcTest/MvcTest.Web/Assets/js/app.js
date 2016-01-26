@@ -23,8 +23,8 @@ PeopleManager.on("start", function () {
   }
 });
 
+//TODO showing/hiding labels
 //TODO templates in separate files
-//TODO styling on edit page
 //TODO loading view 104
 //TODO clean up the code + delete all alerts
 //TODO jquery flash success

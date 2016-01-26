@@ -3,7 +3,8 @@
     template: "#person-form2",
     events: {
       "click button.js-submit": "submitClicked",
-      "click button.js-cancel": "cancelClicked"
+      "click button.js-cancel": "cancelClicked",
+      "click #isAuthorisedLabel" : "isAuthorisedLabelClicked"
     },
     regions: {
       colourListRegion: "#colourListRegion"
@@ -11,7 +12,14 @@
     onShow: function () {
 
     },
-
+    ui: {
+      isAuthorisedCheckbox: "#person-isAuthorised"
+    },
+    isAuthorisedLabelClicked:function(e) {
+      event.preventDefault();
+      this.ui.isAuthorisedCheckbox.toggle();
+    }
+    ,
     submitClicked: function (e) {
       e.preventDefault();
       var colourView = this.colourListRegion.currentView;
