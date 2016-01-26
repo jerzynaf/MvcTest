@@ -1,6 +1,6 @@
 ﻿PeopleManager.module("PeopleApp.Edit", function (Edit, PeopleManager, Backbone, Marionette, $, _) {
   Edit.PersonView = Backbone.Marionette.LayoutView.extend({
-    template: "#person-form",
+    template: "#person-form2",
     events: {
       "click button.js-submit": "submitClicked",
       "click button.js-cancel": "cancelClicked"

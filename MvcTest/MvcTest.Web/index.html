@@ -34,7 +34,7 @@
     </script>
 
     <script type="text/template" id="colour-template">
-        <input type="checkbox"><%= isChecked === true ?  'checked' : '' %>/> <%- name %> aaa
+        <input type="checkbox" <%= isChecked === true ?  'checked' : '' %>/> <%- name %>
     </script>
 
     <script type="text/template" id="people-list">
@@ -74,7 +74,7 @@
     </script>
 
     <!--TODO Cancel button-->
-    <script type="text/template" id="person-form">
+    <!--<script type="text/template" id="person-form">
         <form>
             <div class="control-group">
                 <label for="person-firstName" class="control-label">First name:</label>
@@ -92,7 +92,37 @@
             <button class="btn js-submit">Save</button>
             <button class="btn js-cancel">Cancel</button>
         </form>
+    </script>-->
+
+<script type="text/template" id="person-form2">
+        <h1>Update <%= fullName %></h1>
+        <br />
+        <fieldset>
+            <legend>User Details</legend>
+            <!--TODO inline labels and checkboxes-->
+            <div class="form-group">
+                <label for="IsAuthorised" id="isAuthorisedLabel">Authorised</label>
+                <input class="check-box" id="person-isAuthorised" name="isAuthorised" type="checkbox" <%= isAuthorised === true ?  'checked' : '' %>>
+            </div>
+
+            <div class="form-group">
+                <label for="IsEnabled" id="isEnabledLabel">Enabled</label>
+                <input class="check-box" id="person-isEnabled" name="isEnabled" type="checkbox" <%= isEnabled === true ?  'checked' : '' %>>
+            </div>
+
+        </fieldset>
+        <br />
+        <fieldset>
+            <legend>Favourite Colours</legend>
+            <div id="colourListRegion"></div>
+
+        </fieldset>
+        <br />
+        <button class="btn js-submit">Save Changes</button>
+        <button class="btn js-cancel">Cancel</button>
+
     </script>
+
 
     <script type="text/template" id="list-layout">
         <h1>People</h1>
@@ -106,7 +136,8 @@
     <script src="./Assets/js/vendor/backbone.js"></script>
     <script src="./Assets/js/vendor/backbone.marionette.js"></script>
     <script src="Assets/js/vendor/backbone.syphon.js"></script>
-    <script src="Assets/js/apps/people/list/list_yesNo.js"></script>
+    <script src="Assets/js/apps/people/list/replaceBoolean.js"></script>
+    <script src="Assets/js/apps/people/edit/hideShowLabels.js"></script>
     <script src="Assets/js/app.js"></script>
     <script src="Assets/js/entities/person.js"></script>
     <script src="Assets/js/apps/people/people_app.js"></script>

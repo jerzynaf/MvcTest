@@ -18,18 +18,28 @@
           });
 
           personEditView.on("form:submit", function (data) {
-            person.save(data);
-            PeopleManager.trigger("people:list");
+            var defer = $.Deferred();
+            person.save(data, {
+              success: function () {
+                defer.resolve();
+              }
+            });
+            var promise = defer.promise();
+            $.when(promise).done(function () {
+              PeopleManager.trigger("people:list");
+            });
+            //person.save(data);
+            //PeopleManager.trigger("people:list");
           });
 
-         
+
 
         } else {
           personEditView = new Edit.MissingPerson();
         }
 
         // PeopleManager.mainRegion.show(personEditView);
-       
+
         personEditView.on("show", function () {
           var rawColours = person.get("colours");
           var colourCollection = PeopleManager.request("colour:entities", rawColours);
@@ -39,7 +49,7 @@
           });
 
           personEditView.colourListRegion.show(coloursView);
-           });
+        });
 
         PeopleManager.mainRegion.show(personEditView);
       });

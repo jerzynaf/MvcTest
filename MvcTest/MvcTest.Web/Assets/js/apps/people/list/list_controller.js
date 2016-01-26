@@ -3,7 +3,7 @@
     listPeople: function () {
       var fetchingPeople = PeopleManager.request("person:entities");
 
-      $.when(fetchingPeople).done(function(people) {
+      $.when(fetchingPeople).done(function (people) {
 
         var peopleListView = new List.PeopleView({
           collection: people
@@ -18,7 +18,7 @@
         var peopleLayout = new List.PeopleLayout();
         //peopleLayout.peopleListRegion.show(peopleListView);
         peopleLayout.on("show", function () {
-         
+
           peopleLayout.peopleListRegion.show(peopleListView);
         });
 
