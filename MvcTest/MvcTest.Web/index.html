@@ -16,7 +16,7 @@
     <!--TODO move templates to separate files-->
     <script type="text/template" id="person-template">
         <td>
-            <a href="#people/edit/<%= id %>" class="js-edit"><%= firstName %> <%= lastName %></a>
+            <a href="#people/edit/<%= id %>" class="js-edit"><%- firstName %> <%- lastName %></a>
         </td>
         <td>
             <%= yesNo(isPalindrome) %>
@@ -34,7 +34,7 @@
     </script>
 
     <script type="text/template" id="colour-template">
-        <input type="checkbox" <%= isChecked === true ?  'checked' : '' %>/> <%- name %>
+        <input type="checkbox"<%- isChecked === true ?  'checked' : '' %>/> <%- name %>
     </script>
 
     <script type="text/template" id="people-list">
@@ -61,19 +61,10 @@
         <tbody></tbody>
     </script>
 
-
-    <!--TODO Not needed?-->
-    <!--<script type="text/template" id="person-edit">
-        <h1><%= firstName %> <%=lastName %></h1>
-    </script>-->
-
-
-
     <script type="text/template" id="missing-person-view">
         <div class="alert alert-error">This contact doesn't exist!</div>
     </script>
 
-    <!--TODO Cancel button-->
     <!--<script type="text/template" id="person-form">
         <form>
             <div class="control-group">
@@ -95,21 +86,22 @@
     </script>-->
 
 <script type="text/template" id="person-form2">
-        <h1>Update <%= fullName %></h1>
+        <h1>Update <%- fullName %></h1>
         <br />
         <fieldset>
             <legend>User Details</legend>
             <!--TODO inline labels and checkboxes-->
-            <div class="form-group">
-                <label for="IsAuthorised" id="isAuthorisedLabel">Authorised</label>
-                <input class="check-box" id="person-isAuthorised" name="isAuthorised" type="checkbox" <%= isAuthorised === true ?  'checked' : '' %>>
+            <div>
+                <div class="form-group form-inline">
+                    <input class="check-box" id="person-isAuthorised" name="isAuthorised" type="checkbox"<%- isAuthorised === true ?  'checked' : '' %>>
+                    <label for="isAuthorised" id="isAuthorisedLabel">Authorised</label>
+                </div>
+                <br/>
+                <div class="form-group form-inline">
+                    <input class="check-box" id="person-isEnabled" name="isEnabled" type="checkbox"<%- isEnabled === true ?  'checked' : '' %>>
+                    <label for="IsEnabled" id="isEnabledLabel">Enabled</label>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="IsEnabled" id="isEnabledLabel">Enabled</label>
-                <input class="check-box" id="person-isEnabled" name="isEnabled" type="checkbox" <%= isEnabled === true ?  'checked' : '' %>>
-            </div>
-
         </fieldset>
         <br />
         <fieldset>
@@ -118,8 +110,8 @@
 
         </fieldset>
         <br />
-        <button class="btn js-submit">Save Changes</button>
-        <button class="btn js-cancel">Cancel</button>
+        <button class="btn btn-default js-submit">Save Changes</button>
+        <button class="btn btn-default js-cancel">Cancel</button>
 
     </script>
 
@@ -135,6 +127,9 @@
     <script src="./Assets/js/vendor/underscore.js"></script>
     <script src="./Assets/js/vendor/backbone.js"></script>
     <script src="./Assets/js/vendor/backbone.marionette.js"></script>
+    <script src="Assets/js/vendor/handlebars-v4.0.5.js"></script>
+    <script src="Assets/js/vendor/lazy-templates.js"></script>
+    <!--<script src="Assets/js/apps/config/marionette/templateCache.js"></script>-->
     <script src="Assets/js/vendor/backbone.syphon.js"></script>
     <script src="Assets/js/apps/people/list/replaceBoolean.js"></script>
     <script src="Assets/js/apps/people/edit/hideShowLabels.js"></script>

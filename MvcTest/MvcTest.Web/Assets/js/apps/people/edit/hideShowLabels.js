@@ -1,13 +1,15 @@
 ﻿$(document).ready(function () {
 
   $("#isAuthorisedLabel").click(function (event) {
+    alert("ok");
     event.preventDefault();
-    $("#isAuthorised").toggle();
+    $("#person-isAuthorised").toggle();
   });
 
   $("#isEnabledLabel").click(function (event) {
+    alert("ok");
     event.preventDefault();
-    $("#isEnabled").toggle();
+    $("person-isEnabled").toggle();
   });
 
 });
